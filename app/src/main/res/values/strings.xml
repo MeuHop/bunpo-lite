@@ -1,5 +1,12 @@
 <resources>
     <string name="app_name">Bunpo Lite</string>
-    
     <string name="slogan">Vì một tương lai đu MayaKuro tẹt ga và đọc LN hàng gốc.</string>
+
+    <!-- Common -->
+    <string name="go_back">Go Back</string>
+
+    <!-- Home Destinations -->
+    <string name="main">Main</string>
+    <string name="test">Test</string>
+    <string name="profile">Profile</string>
 </resources>
