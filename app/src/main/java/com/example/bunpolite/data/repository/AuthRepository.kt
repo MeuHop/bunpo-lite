@@ -6,7 +6,7 @@ import javax.inject.Inject
 class AuthRepository @Inject constructor(
     private val authRemoteDataSource: AuthRemoteDataSource
 ) {
-    suspend fun logIn(email: String, password: String) {
+    suspend fun signIn(email: String, password: String) {
         authRemoteDataSource.signIn(email, password)
     }
 

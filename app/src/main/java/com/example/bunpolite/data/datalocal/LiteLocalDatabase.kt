@@ -4,6 +4,7 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.example.bunpolite.data.datalocal.dao.MainLessonDao
+import com.example.bunpolite.data.datalocal.dao.TestDao
 import com.example.bunpolite.data.datalocal.entities.MainLessonEntity
 
 @Database(
@@ -16,4 +17,6 @@ import com.example.bunpolite.data.datalocal.entities.MainLessonEntity
 @TypeConverters(Converters::class)
 abstract class LiteLocalDatabase : RoomDatabase() {
     abstract fun mainLessonDao(): MainLessonDao
+
+    abstract fun testDao(): TestDao
 }

@@ -1,12 +1,35 @@
 <resources>
-    <string name="app_name">Bunpo Lite</string>
-    <string name="slogan">Vì một tương lai đu MayaKuro tẹt ga và đọc LN hàng gốc.</string>
+    <string name="app_name" translatable="false">Bunpo Lite</string>
+    <string name="slogan" translatable="false">Vì một tương lai đu MayaKuro tẹt ga và đọc LN hàng gốc.</string>
 
     <!-- Common -->
     <string name="go_back">Go Back</string>
+    <string name="submit">Submit</string>
 
     <!-- Home Destinations -->
-    <string name="main">Main</string>
+    <string name="main">Main Lesson</string>
     <string name="test">Test</string>
     <string name="profile">Profile</string>
+
+    <!-- Exit App Alert Dialog -->
+    <string name="alert_dialog_exit_app_title">Do you confirm to exit the app?</string>
+    <string name="alert_dialog_confirm">Confirm</string>
+    <string name="alert_dialog_cancel">Cancel</string>
+
+    <!-- Authentication -->
+    <string name="authentication">Authentication</string>
+    <string name="go_to_sign_up">No account yet? Sign up.</string>
+    <string name="go_to_sign_in">Already have an account? Sign in.</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="sign_in">Sign In</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="sign_out">Sign Out</string>
+
+    <!-- Question type -->
+    <string name="multiple_choice">Multiple Choice</string>
+    <string name="multiple_choice_guide">Choose the correct answer.</string>
+    <string name="fill_blank">Fill Blank</string>
+    <string name="fill_blank_guide">Fill the answer in the blank.</string>
 </resources>

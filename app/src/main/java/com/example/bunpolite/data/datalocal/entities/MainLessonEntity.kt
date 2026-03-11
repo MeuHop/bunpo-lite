@@ -4,9 +4,13 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "main_lessons")
+@Entity(tableName = "Main_lesson")
 data class MainLessonEntity(
     @PrimaryKey val id: String = "",
     @ColumnInfo(name = "idx") val index: Int = 0,
-    val title: String = ""
+    val title: String = "",
+    @ColumnInfo(name = "category_en") val categoryEn: String,
+    @ColumnInfo(name = "category_jp") val categoryJp: String,
+    @ColumnInfo(name = "sentence_pattern_en") val sentencePatternEn: String,
+    @ColumnInfo(name = "sentence_pattern_jp") val sentencePatternJp: String,
 )

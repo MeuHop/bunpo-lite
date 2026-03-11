@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="go_back">Quay lại</string>
+    <string name="submit">Nộp bài</string>
+    <string name="main">Bài chính</string>
+    <string name="test">Kiểm tra</string>
+    <string name="profile">Hồ sơ</string>
+    <string name="sign_out">Đăng xuất</string>
+    <string name="multiple_choice">Trắc nghiệm</string>
+    <string name="multiple_choice_guide">Hãy chọn đáp án đúng.</string>
+    <string name="fill_blank">Điền từ</string>
+    <string name="fill_blank_guide">Hãy điền vào chỗ trống.</string>
+    <string name="alert_dialog_exit_app_title">Bạn có chắc chắn muốn thoát khỏi ứng dụng?</string>
+    <string name="alert_dialog_cancel">Hủy bỏ</string>
+    <string name="authentication">Xác thực</string>
+    <string name="go_to_sign_up">Chưa có tài khoản? Hãy đăng ký.</string>
+    <string name="go_to_sign_in">Đã có tài khoản? Hãy đăng nhập.</string>
+    <string name="email">Email</string>
+    <string name="password">Mật khẩu</string>
+    <string name="confirm_password">Xác nhận mật khẩu</string>
+    <string name="sign_in">Đăng nhập</string>
+    <string name="sign_up">Đăng ký</string>
+    <string name="alert_dialog_confirm">Đồng ý</string>
+</resources>
