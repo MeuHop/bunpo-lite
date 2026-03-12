@@ -5,6 +5,7 @@
     <!-- Common -->
     <string name="go_back">Go Back</string>
     <string name="submit">Submit</string>
+    <string name="refresh">Refresh</string>
 
     <!-- Home Destinations -->
     <string name="main">Main Lesson</string>
@@ -26,6 +27,30 @@
     <string name="sign_in">Sign In</string>
     <string name="sign_up">Sign Up</string>
     <string name="sign_out">Sign Out</string>
+
+    <!-- Main Lesson -->
+    <string name="en_view">EN View</string>
+    <string name="jp_view">JP View</string>
+    <string name="go_to_lesson">Go to lesson</string>
+    <!-- Main Lesson filter -->
+    <string name="all">All</string>
+
+    <string name="title">Title</string>
+    <string name="ex_title" translatable="false">じゅぎょうは １０じから １２じまでです</string>
+
+    <string name="category">Category</string>
+    <string name="ex_category_en" translatable="false">from A to B</string>
+    <string name="ex_category_jp" translatable="false">AからBまで</string>
+
+    <string name="sentence_pattern">Sentence Pattern</string>
+    <string name="ex_sentence_pattern_en" translatable="false">[date] desu , [noun] kara [noun] made [noun] desu</string>
+    <string name="ex_sentence_pattern_jp" translatable="false">[日時]です , [名詞]から[名詞]まで[名詞]です</string>
+
+    <!-- Profile -->
+    <string name="choose_app_theme">Choose App Theme</string>
+    <string name="system_theme">System</string>
+    <string name="light_theme">Light</string>
+    <string name="dark_theme">Dark</string>
 
     <!-- Question type -->
     <string name="multiple_choice">Multiple Choice</string>

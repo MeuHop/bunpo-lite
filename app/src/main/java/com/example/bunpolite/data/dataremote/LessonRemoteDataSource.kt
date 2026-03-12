@@ -33,6 +33,5 @@ class LessonRemoteDataSource @Inject constructor(firestore: FirebaseFirestore) {
         const val THEORY_COLLECTION = "theories"
         const val QUESTION_COLLECTION = "questions"
         const val REFERENCE_COLLECTION = "reference"
-        const val INDEX_FIELD = "index"
     }
 }

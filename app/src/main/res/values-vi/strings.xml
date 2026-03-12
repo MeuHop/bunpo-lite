@@ -2,10 +2,13 @@
 <resources>
     <string name="go_back">Quay lại</string>
     <string name="submit">Nộp bài</string>
+    <string name="refresh">Làm mới</string>
     <string name="main">Bài chính</string>
     <string name="test">Kiểm tra</string>
     <string name="profile">Hồ sơ</string>
     <string name="sign_out">Đăng xuất</string>
+    <string name="jp_view">Xem JP</string>
+    <string name="dark_theme">Tối</string>
     <string name="multiple_choice">Trắc nghiệm</string>
     <string name="multiple_choice_guide">Hãy chọn đáp án đúng.</string>
     <string name="fill_blank">Điền từ</string>
@@ -21,4 +24,13 @@
     <string name="sign_in">Đăng nhập</string>
     <string name="sign_up">Đăng ký</string>
     <string name="alert_dialog_confirm">Đồng ý</string>
+    <string name="en_view">Xem EN</string>
+    <string name="choose_app_theme">Chọn chủ đề</string>
+    <string name="system_theme">Hệ thống</string>
+    <string name="light_theme">Sáng</string>
+    <string name="go_to_lesson">Tới bài học</string>
+    <string name="all">Tất cả</string>
+    <string name="title">Tiêu đề</string>
+    <string name="category">Kiểu loại</string>
+    <string name="sentence_pattern">Mẫu câu</string>
 </resources>

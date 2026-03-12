@@ -4,6 +4,8 @@ import android.app.Activity
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -12,10 +14,12 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.ListItem
 import androidx.compose.material3.ListItemDefaults
 import androidx.compose.material3.MaterialTheme
@@ -38,6 +42,8 @@ import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import com.example.bunpolite.R
 import com.example.bunpolite.data.model.MainLesson
 import com.example.bunpolite.ui.shared.MainTopAppBar
+import com.example.bunpolite.ui.shared.NeedRefreshListScreen
+import com.example.bunpolite.ui.shared.ShowSnackbar
 import kotlinx.serialization.Serializable
 
 private const val MAX_LINE_CARD_CONTENT = 1
@@ -47,6 +53,7 @@ object MainLessonRoute
 @Composable
 fun MainLessonScreen(
     openLessonScreen: (String) -> Unit,
+    showSnackbar: ShowSnackbar,
     viewModel: MainLessonViewModel = hiltViewModel<MainLessonViewModel>()
 ) {
     val context = LocalContext.current
@@ -68,23 +75,55 @@ fun MainLessonScreen(
 @Composable
 private fun MainLessonScreenContent(
     openLessonScreen: (String) -> Unit,
+    showSnackbar: ShowSnackbar,
+    onToggleLanguageView: (ShowSnackbar) -> Unit,
+    onRefresh: () -> Unit,
+    isRefreshing: Boolean,
+    uiState: MainLessonUiState,
     modifier: Modifier = Modifier
 ) {
     Scaffold(
         modifier = modifier,
-        topBar = { MainTopAppBar(titleResId = R.string.main) }
+        topBar = { MainTopAppBar(
+            titleResId = R.string.main,
+            currentActions = {
+                val buttonLabelResId = if (uiState.isMainLessonEnView) R.string.jp_view else R.string.en_view
+                FilledTonalButton(
+                    onClick = { onToggleLanguageView(showSnackbar) },
+                    enabled = !uiState.displayRefreshButton
+                ) { Text(stringResource(buttonLabelResId)) }
+            }
+        ) }
     ) { innerPadding ->
-        LessonLazyList(
-            openLessonScreen = openLessonScreen,
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(innerPadding)
-        )
+        val parentModifier = Modifier
+            .fillMaxSize()
+            .padding(innerPadding)
+        if (uiState.displayRefreshButton) {
+            NeedRefreshListScreen(
+                isRefreshing = isRefreshing,
+                onRefresh = onRefresh,
+                modifier = parentModifier
+            )
+        } else {
+            LessonLazyList(
+                uiState = uiState,
+                openLessonScreen = openLessonScreen,
+                modifier = parentModifier
+            )
+        }
     }
 }
 
 @Composable
+fun FilterAndConfigureList(modifier: Modifier = Modifier) {
+    FlowRow(
+        modifier = modifier
+    ) {  }
+}
+
+@Composable
 private fun LessonLazyList(
+    uiState: MainLessonUiState,
     openLessonScreen: (String) -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -94,7 +133,19 @@ private fun LessonLazyList(
         contentPadding = PaddingValues(dimensionResource(R.dimen.padding_small)),
         horizontalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.padding_extra_small)),
         verticalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.padding_extra_small)),
-    ) { }
+    ) {
+        items(
+            items = uiState.mainLessons,
+            key = { lesson -> lesson.id },
+            contentType = { MainLesson::class }
+        ) { lesson ->
+            LessonCard(
+                isOnEnView = uiState.isMainLessonEnView,
+                lesson = lesson,
+                onClickLessonCard = openLessonScreen
+            )
+        }
+    }
 }
 
 @Composable
