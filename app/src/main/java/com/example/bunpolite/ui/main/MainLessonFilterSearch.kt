@@ -10,7 +10,7 @@ enum class MainLessonFilterSearch(
     All(R.string.all,
         listOf(R.string.ex_title, R.string.ex_category_en, R.string.ex_category_jp,
             R.string.ex_sentence_pattern_en, R.string.ex_sentence_pattern_jp)),
-    Title(R.string.all, listOf(R.string.ex_title)),
-    Category(R.string.all, listOf(R.string.ex_category_en, R.string.ex_category_jp)),
-    SentencePattern(R.string.all, listOf(R.string.ex_sentence_pattern_en, R.string.ex_sentence_pattern_jp))
+    Title(R.string.title, listOf(R.string.ex_title)),
+    Category(R.string.category, listOf(R.string.ex_category_en, R.string.ex_category_jp)),
+    SentencePattern(R.string.sentence_pattern, listOf(R.string.ex_sentence_pattern_en, R.string.ex_sentence_pattern_jp))
 }

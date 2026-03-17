@@ -31,6 +31,7 @@
     <!-- Main Lesson -->
     <string name="en_view">EN View</string>
     <string name="jp_view">JP View</string>
+    <string name="search">Search</string>
     <string name="go_to_lesson">Go to lesson</string>
     <!-- Main Lesson filter -->
     <string name="all">All</string>
