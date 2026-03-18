@@ -26,7 +26,11 @@ class LessonRemoteDataSource @Inject constructor(firestore: FirebaseFirestore) {
             .collection(REFERENCE_COLLECTION).get().await().toObjects()
     }
 
-    suspend fun getQuestionList(lessonId: String, theoryId: String) {}
+    suspend fun getQuestionList(lessonId: String, theoryId: String) {
+        lessonCollectionRef.document(lessonId)
+            .collection(THEORY_COLLECTION).document(theoryId)
+            .collection(QUESTION_COLLECTION)
+    }
 
     private companion object {
         const val MAIN_COLLECTION = "mains"

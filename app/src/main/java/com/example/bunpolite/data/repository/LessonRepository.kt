@@ -10,7 +10,9 @@ import com.example.bunpolite.data.model.MainLesson
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class LessonRepository @Inject constructor(
     private val lessonRemoteDataSource: LessonRemoteDataSource,
     private val mainLessonDao: MainLessonDao

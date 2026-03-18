@@ -28,7 +28,6 @@ import androidx.compose.foundation.text.input.rememberTextFieldState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.AlertDialog
-import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.DropdownMenuItem
@@ -64,6 +63,7 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.bunpolite.R
 import com.example.bunpolite.data.model.MainLesson
 import com.example.bunpolite.ui.shared.MainTopAppBar
@@ -83,10 +83,24 @@ fun MainLessonScreen(
     showSnackbar: ShowSnackbar,
     viewModel: MainLessonViewModel = hiltViewModel<MainLessonViewModel>()
 ) {
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val context = LocalContext.current
     var showExitDialog by remember { mutableStateOf(false) }
 
     BackHandler { showExitDialog = true }
+
+    MainLessonScreenContent(
+        openLessonScreen = openLessonScreen,
+        showSnackbar = showSnackbar,
+        onToggleLanguageView = viewModel::toggleInfoLanguageView,
+        onChangeSearchType = viewModel::onChangeCurrentSearchType,
+        onClickSearch = viewModel::onFilterListSearch,
+        onClickGoToLesson = { number -> viewModel.onClickGoToLesson(
+            showSnackbar, number, openLessonScreen) },
+        onRefresh = viewModel::refresh,
+        uiState = uiState,
+        modifier = Modifier.fillMaxSize()
+    )
 
     if (showExitDialog) {
         ExitAppAlertDialog(
@@ -104,8 +118,10 @@ private fun MainLessonScreenContent(
     openLessonScreen: (String) -> Unit,
     showSnackbar: ShowSnackbar,
     onToggleLanguageView: (ShowSnackbar) -> Unit,
-    onRefresh: () -> Unit,
-    isRefreshing: Boolean,
+    onChangeSearchType: (MainLessonFilterSearch) -> Unit,
+    onClickSearch: (String) -> Unit,
+    onClickGoToLesson: (String) -> Unit,
+    onRefresh: (ShowSnackbar) -> Unit,
     uiState: MainLessonUiState,
     modifier: Modifier = Modifier
 ) {
@@ -122,21 +138,30 @@ private fun MainLessonScreenContent(
             }
         ) }
     ) { innerPadding ->
-        val parentModifier = Modifier
-            .fillMaxSize()
-            .padding(innerPadding)
-        if (uiState.displayRefreshButton) {
-            NeedRefreshListScreen(
-                isRefreshing = isRefreshing,
-                onRefresh = onRefresh,
-                modifier = parentModifier
-            )
-        } else {
-            LessonLazyList(
-                uiState = uiState,
-                openLessonScreen = openLessonScreen,
-                modifier = parentModifier
-            )
+        Column(
+            modifier = Modifier.fillMaxSize().padding(innerPadding),
+            verticalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.padding_extra_small))
+        ) {
+            if (uiState.displayRefreshButton) {
+                NeedRefreshListScreen(
+                    isRefreshing = uiState.isRefreshing,
+                    onRefresh = { onRefresh(showSnackbar) },
+                    modifier = Modifier.fillMaxSize()
+                )
+            } else {
+                FilterAndConfigureList(
+                    currentSearchType = uiState.currentSearchType,
+                    onChangeSearchType = onChangeSearchType,
+                    onClickSearch = onClickSearch,
+                    onClickGoToLesson = onClickGoToLesson,
+                )
+
+                LessonLazyList(
+                    uiState = uiState,
+                    openLessonScreen = openLessonScreen,
+                    modifier = Modifier.weight(1f)
+                )
+            }
         }
     }
 }
@@ -146,11 +171,9 @@ private fun FilterAndConfigureList(
     currentSearchType: MainLessonFilterSearch,
     onChangeSearchType: (MainLessonFilterSearch) -> Unit,
     onClickSearch: (String) -> Unit,
-    onClickGoToLesson: (String) -> Unit,
-    modifier: Modifier = Modifier
+    onClickGoToLesson: (String) -> Unit
 ) {
     FlowRow(
-        modifier = modifier,
         horizontalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.padding_small))
     ) {
         SearchInputRow(
